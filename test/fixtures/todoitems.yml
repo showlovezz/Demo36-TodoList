@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  todolist_id: 1
+  done: false
+
+two:
+  content: MyString
+  todolist_id: 1
+  done: false
