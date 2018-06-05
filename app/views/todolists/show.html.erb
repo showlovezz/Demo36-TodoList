@@ -1,0 +1,78 @@
+<section id="section_todolist_show">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+
+        <div class="card">
+          <h1 class="text-center"><%= @todolist.title %></h1>
+          <p class="text-center text-muted"><%= @todolist.description %></p>
+            <table class="table table-bordered">
+              <tbody>
+                <% @todolist.todoitems.each do |todoitem| %>
+                  <tr>
+                    <% if todoitem.done? %>
+                      <td style="width: 5rem;" class="text-center">
+                        <%= link_to complete_todolist_todoitem_path(@todolist, todoitem), method: :patch  do %>
+                          <i class="fa fa-check text-muted"></i>
+                        <% end %>
+                      </td>
+                      <td class="text-primary">
+                        <p style="opacity: 0.7"><del><%= todoitem.content %></del></p>
+                      </td>
+                      <td style="width: 5rem;" class="text-center">
+                        <%= link_to todolist_todoitem_path(@todolist, todoitem), method: :delete do %>
+                          <i class="fa fa-trash text-danger"></i>
+                        <% end %>
+                      </td>
+                    <% else %>
+                      <td style="width: 5rem;" class="text-center">
+                        <%= link_to complete_todolist_todoitem_path(@todolist, todoitem), method: :patch  do %>
+                          <i class="fa fa-check text-muted"></i>
+                        <% end %>
+                      </td>
+                      <td class="text-muted">
+                        <p><%= todoitem.content %></p>
+                      </td>
+                      <td style="width: 5rem;" class="text-center">
+                        <%= link_to todolist_todoitem_path(@todolist, todoitem), method: :delete do %>
+                          <i class="fa fa-trash text-danger"></i>
+                        <% end %>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+            <%= form_for [@todolist, @todoitem] do |f| %>
+              <div class="form-row">
+                <div class="form-group col-md-9">
+                  <%= f.text_field :content, class: "form-control form-control-lg", placeholder: "New Todo Item" %>
+                </div>
+                <div class="form-group col-md-3">
+                  <%= f.submit "Create Todo Item", class: "btn btn-lg text-muted" %>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="form-group text-center text-white">
+              <%= link_to "Edit", edit_todolist_path(@todolist), class: "text-white" %> |
+              <%= link_to "Delete", todolist_path(@todolist), class: "text-white", method: :delete, data: {confirm: "Are you sure?"} %> |
+              <%= link_to "Back", todolists_path, class: "text-white" %>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+

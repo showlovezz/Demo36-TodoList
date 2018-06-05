@@ -1,0 +1,26 @@
+<section id="section_todolist_index">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+
+        <div class="card">
+          <h1 class="text-center">TodoList</h1>
+          <ul class="list-group list-group-flush">
+            <% @todolists.each do |todolist| %>
+              <%= link_to todolist_path(todolist), class: "no_under_line" do %>
+                <li class="list-group-item">
+                  <h2 class="text-center"><%= todolist.title %></h2>
+                  <p class="text-center text-muted"><%= todolist.description %></p>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+          <div class="card-body text-center">
+            <%= link_to "New Todolist", new_todolist_path, class: "card-link" %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
